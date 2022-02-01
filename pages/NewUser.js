@@ -3,7 +3,7 @@ import { addUser } from "../store/actions";
 
 const NewUser = ({ navigation }) => {
   return (
-    <Form userMethod={addUser} navigation={navigation} />
+    <Form userMethod={addUser} navigation={navigation} user={{}} />
   )
 }
 

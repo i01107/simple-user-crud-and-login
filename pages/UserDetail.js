@@ -21,7 +21,7 @@ const UserDetail = ({ route, navigation }) => {
       <View style={styles.buttonHolder}>
         <TouchableOpacity
           style={styles.editBtn}
-          onPress={() => alert("Edit yeuh")}>
+          onPress={() => navigation.navigate("EditUser", { user })}>
             <Text style={styles.btnEdit}>Edit</Text>
         </TouchableOpacity>
 

@@ -46,6 +46,22 @@ export const addUser = user => {
   }
 }
 
+export const updateUser = user => {
+  return (dispatch, getState) => {
+    const { users } = getState()
+    let curUsers = [...users]
+    let idx = curUsers.findIndex(u => u.id === user.id)
+    if (idx >= 0) {
+      curUsers.splice(idx, 1)
+    }
+    curUsers.unshift(user)
+    dispatch({
+      type: 'SET_USERS',
+      users: curUsers
+    })
+  }
+}
+
 export const delUser = userId => {
   return (dispatch, getState) => {
     const { users } = getState()

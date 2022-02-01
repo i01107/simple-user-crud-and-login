@@ -3,8 +3,8 @@ import { StyleSheet, TextInput, View, Button } from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
 import { useDispatch } from "react-redux"
 
-const Form = ({ userMethod, navigation }) => {
-  const [formedUser, setFormedUser] = useState({})
+const Form = ({ userMethod, navigation, user }) => {
+  const [formedUser, setFormedUser] = useState(user)
   const dispatch = useDispatch()
   const columns = ['name', 'email', 'phone', 'picture']
   const gender = [
@@ -19,7 +19,14 @@ const Form = ({ userMethod, navigation }) => {
 
   const handleSubmit = () => {
     dispatch(userMethod(formedUser))
-    navigation.goBack()
+    if (user.name) { // form as a user edit
+      navigation.reset({
+        index: 1,
+        routes: [{ name: 'Home'}, { name: 'Details', params: { user: formedUser } }]
+      })
+    } else { // form as a new user
+      navigation.goBack()
+    }
   }
 
   return (
@@ -28,6 +35,7 @@ const Form = ({ userMethod, navigation }) => {
         columns.map((col, idx) => (
           <TextInput
             style={styles.input}
+            value={formedUser[col]}
             placeholder={`Insert ${col} ${col === 'picture' ? 'url' : ''}`}
             onChangeText={text => handleChange(text, col)}
             key={idx}

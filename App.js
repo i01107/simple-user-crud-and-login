@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './pages/Home';
 import UserDetail from './pages/UserDetail';
 import NewUser from './pages/NewUser';
+import EditUser from './pages/EditUser';
 
 const Stack = createNativeStackNavigator();
 const stackOption = {
@@ -21,6 +22,7 @@ export default function App() {
           <Stack.Screen name="Home" component={Home} options={{...stackOption, title: 'Home'}} />
           <Stack.Screen name="Details" component={UserDetail} options={{...stackOption, title: 'User Detail'}} />
           <Stack.Screen name="NewUser" component={NewUser} options={{...stackOption, title: 'New User'}} />
+          <Stack.Screen name="EditUser" component={EditUser} options={{...stackOption, title: 'Edit User'}} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

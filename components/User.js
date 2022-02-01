@@ -1,16 +1,11 @@
 import { Text, StyleSheet, View, Image, Button } from "react-native"
 
 const User = ({ user, navigation }) => {
-  const getName = () => {
-    const { title, first, last } = user.name
-    return [title, first, last].join(" ")
-  }
-
   return (
     <View style={styles.item}>
-      <Image source={{ uri: user.picture.large }} style={styles.photo} />
+      <Image source={{ uri: user.picture }} style={styles.photo} />
       <View>
-        <Text style={styles.name}>{getName()}</Text>
+        <Text style={styles.name}>{user.name}</Text>
         <Text>{user.email}</Text>
         <Text>{user.phone}</Text>
         <Text>{user.gender}</Text>

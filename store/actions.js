@@ -6,6 +6,9 @@ const usersConverter = (raw_users) => {
   return raw_users.map(user => {
     let newUser = { ...user }
     newUser.id = uuidv4()
+    newUser.picture = newUser.picture.large
+    const { title, first, last } = newUser.name
+    newUser.name = [title, first, last].join(" ")
     return newUser
   })
 }

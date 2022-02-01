@@ -6,11 +6,6 @@ const UserDetail = ({ route, navigation }) => {
   const { user } = route.params
   const dispatch = useDispatch()
 
-  const getName = () => {
-    const { title, first, last } = user.name
-    return [title, first, last].join(" ")
-  }
-
   const handleDeletion = () => {
     dispatch(delUser(user.id))
     navigation.goBack()
@@ -18,8 +13,8 @@ const UserDetail = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: user.picture.large }} style={styles.photo} />
-      <Text style={styles.name}>{ getName() }</Text>
+      <Image source={{ uri: user.picture }} style={styles.photo} />
+      <Text style={styles.name}>{user.name}</Text>
       <Text>{user.email}</Text>
       <Text>{user.phone}</Text>
       <Text>{user.gender}</Text>

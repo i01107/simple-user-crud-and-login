@@ -7,7 +7,7 @@ const Form = ({ userMethod, navigation }) => {
   const [formedUser, setFormedUser] = useState({})
   const dispatch = useDispatch()
   const columns = ['name', 'email', 'phone', 'picture']
-  const data = [
+  const gender = [
     {label: 'male', value: 'male'}, {label: 'female', value: 'female'}
   ]
 
@@ -35,7 +35,7 @@ const Form = ({ userMethod, navigation }) => {
         ))
       }
       <Dropdown
-        data={data}
+        data={gender}
         placeholder="Select gender"
         style={
           {

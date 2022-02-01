@@ -1,17 +1,26 @@
 import { Provider } from 'react-redux';
 import store from './store';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './pages/Home';
+import UserDetail from './pages/UserDetail';
+
+const Stack = createNativeStackNavigator();
+const stackOption = {
+  headerStyle: { backgroundColor: "#00aa8d" },
+  headerTintColor: "#fff"
+}
 
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <View style={styles.topBar}>
-          <Text style={styles.title}>USERS</Text>
-        </View>
-        <Home />
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} options={stackOption} />
+          <Stack.Screen name="Details" component={UserDetail} options={stackOption} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
@@ -20,14 +29,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  topBar: {
-    alignItems: 'center',
-    backgroundColor: '#00aa8d',
-  },
-  title: {
-    color: '#fff',
-    fontSize: 20,
-    marginTop: 30,
-    paddingVertical: 10
-  }
 });

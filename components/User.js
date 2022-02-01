@@ -1,6 +1,6 @@
-import { Text, StyleSheet, View, Image, Button, Alert } from "react-native"
+import { Text, StyleSheet, View, Image, Button } from "react-native"
 
-const User = ({ user }) => {
+const User = ({ user, navigation }) => {
   const getName = () => {
     const { title, first, last } = user.name
     return [title, first, last].join(" ")
@@ -16,7 +16,7 @@ const User = ({ user }) => {
         <Text>{user.gender}</Text>
       </View>
       <View>
-        <Button color="#1572A1" title="Detail" onPress={() => Alert.alert("masuk")} />
+        <Button color="#1572A1" title="Detail" onPress={() => navigation.navigate('Details', { user })} />
       </View>
     </View>
   )
@@ -27,9 +27,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     borderBottomWidth: 1,
-    // borderRadius: 5,
-    // backgroundColor: "#84DFFF",
-    // padding: 5,
     paddingBottom: 10,
     marginVertical: 5,
     marginHorizontal: 10,

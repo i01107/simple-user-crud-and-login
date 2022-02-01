@@ -4,7 +4,7 @@ import { fetchUsers } from '../store/actions';
 import { useEffect } from 'react';
 import User from '../components/User';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const users = useSelector((state) => state.users)
   const dispatch = useDispatch()
 
@@ -12,7 +12,7 @@ const Home = () => {
     dispatch(fetchUsers())
   }, [])
 
-  const renderItem = ({ item }) => <User user={item} />;
+  const renderItem = ({ item }) => <User user={item} navigation={navigation} />;
 
   return (
     <FlatList

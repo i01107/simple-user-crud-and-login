@@ -1,11 +1,19 @@
-import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, Image, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { useDispatch } from "react-redux";
+import { delUser } from "../store/actions";
 
 const UserDetail = ({ route, navigation }) => {
   const { user } = route.params
+  const dispatch = useDispatch()
 
   const getName = () => {
     const { title, first, last } = user.name
     return [title, first, last].join(" ")
+  }
+
+  const handleDeletion = () => {
+    dispatch(delUser(user.id))
+    navigation.goBack()
   }
 
   return (
@@ -19,13 +27,15 @@ const UserDetail = ({ route, navigation }) => {
         <TouchableOpacity
           style={styles.editBtn}
           onPress={() => alert("Edit yeuh")}>
-            <Text style={styles.btnTxt}>Edit</Text>
+            <Text style={styles.btnEdit}>Edit</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.delBtn}
-          onPress={() => alert("Del yeuh")}>
-            <Text style={styles.btnTxt}>Delete</Text>
+          onPress={() => Alert.alert("Delete User", `Are you sure you want to delete ${getName()} ?`, [
+            { text: "No" }, { text: "Yes", onPress: handleDeletion }
+          ])}>
+            <Text style={styles.btnDel}>Delete</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -68,8 +78,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginLeft: 5
   },
-  btnTxt: {
+  btnEdit: {
     color: "#000"
+  },
+  btnDel: {
+    color: "#fff"
   }
 })
 

@@ -29,3 +29,18 @@ export const fetchUsers = () => {
     }
   }
 }
+
+export const delUser = userId => {
+  return (dispatch, getState) => {
+    const { users } = getState()
+    let curUsers = [...users]
+    let idx = curUsers.findIndex(u => u.id === userId)
+    if (idx >= 0) {
+      curUsers.splice(idx, 1)
+    }
+    dispatch({
+      type: 'SET_USERS',
+      users: curUsers
+    })
+  }
+}

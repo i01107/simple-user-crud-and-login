@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, Image, Button } from "react-native"
 const User = ({ user, navigation }) => {
   return (
     <View style={styles.item}>
-      <Image source={{ uri: user.picture }} style={styles.photo} />
+      <Image source={{ uri: user.picture ? user.picture : 'https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/user.png' }} style={styles.photo} />
       <View>
         <Text style={styles.name}>{user.name}</Text>
         <Text>{user.email}</Text>

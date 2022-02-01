@@ -33,6 +33,19 @@ export const fetchUsers = () => {
   }
 }
 
+export const addUser = user => {
+  return (dispatch, getState) => {
+    const { users } = getState()
+    let curUsers = [...users]
+    user.id = uuidv4()
+    curUsers.unshift(user)
+    dispatch({
+      type: 'SET_USERS',
+      users: curUsers
+    })
+  }
+}
+
 export const delUser = userId => {
   return (dispatch, getState) => {
     const { users } = getState()

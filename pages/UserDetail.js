@@ -13,7 +13,7 @@ const UserDetail = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: user.picture }} style={styles.photo} />
+      <Image source={{ uri: user.picture ? user.picture : 'https://uxwing.com/wp-content/themes/uxwing/download/12-peoples-avatars/user.png' }} style={styles.photo} />
       <Text style={styles.name}>{user.name}</Text>
       <Text>{user.email}</Text>
       <Text>{user.phone}</Text>
@@ -27,7 +27,7 @@ const UserDetail = ({ route, navigation }) => {
 
         <TouchableOpacity
           style={styles.delBtn}
-          onPress={() => Alert.alert("Delete User", `Are you sure you want to delete ${getName()} ?`, [
+          onPress={() => Alert.alert("Delete User", `Are you sure you want to delete ${user.name} ?`, [
             { text: "No" }, { text: "Yes", onPress: handleDeletion }
           ])}>
             <Text style={styles.btnDel}>Delete</Text>

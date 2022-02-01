@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUsers } from '../store/actions';
 import { useEffect } from 'react';
@@ -15,10 +15,13 @@ const Home = ({ navigation }) => {
   const renderItem = ({ item }) => <User user={item} navigation={navigation} />;
 
   return (
-    <FlatList
-      data={users}
-      renderItem={renderItem}
-      keyExtractor={item => item.id} />
+    <>
+      <Button title='Add User' onPress={() => navigation.navigate("NewUser")}/>
+      <FlatList
+        data={users}
+        renderItem={renderItem}
+        keyExtractor={item => item.id} />
+    </>
   )
 }
 
